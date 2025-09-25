@@ -13,7 +13,7 @@ public class QueueTester {
         System.out.println("size: " + Q.size() + " S: " + Q);
         System.out.println("The first in line is: " + Q.peek());
         System.out.println("size: " + Q.size() + " S: " + Q);
-        System.out.println("rtemoving: " + Q.remove());
+        System.out.println("removing: " + Q.remove());
         System.out.println("size: " + Q.size() + " S: " + Q);
         Q.remove();
         Q.remove();
