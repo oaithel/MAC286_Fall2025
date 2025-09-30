@@ -4,7 +4,8 @@ import com.mac286.stacks.wOurStack;
 //Change this tester to make it work with our queue
 public class QueueTester {
     public static void main(String[] args) {
-        OurQueue<Integer> Q = new OurQueue<>();
+        //OurQueue<Integer> Q = new OurQueue<>();
+        CircularQueue<Integer> Q = new CircularQueue<>();
         System.out.println("size: " + Q.size() + " S: " + Q);
         Q.add(-1);
         Q.add(-3);
