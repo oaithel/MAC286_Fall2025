@@ -9,7 +9,7 @@ public class CircularQueue <T>{
     public CircularQueue(){
         queue = (T[]) new Object[10];
         size = 0;
-        first = last = -1
+        first = last = -1;
     }
     public int size(){
         return size;
@@ -45,12 +45,14 @@ public class CircularQueue <T>{
         //decrement the size
 
         //returned the saved.
+        return null;
     }
 
     public T peek(){
         //if empty throw an exception
 
         //return element at index first
+        return null;
     }
 
     public String toString(){
@@ -64,5 +66,6 @@ public class CircularQueue <T>{
         //at the end of the loop, add element at index last and a closing bracket "]" to the string
 
         //return the string.
+        return null;
     }
 }
