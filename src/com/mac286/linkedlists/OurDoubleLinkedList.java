@@ -3,6 +3,7 @@ package com.mac286.linkedlists;
 import java.util.NoSuchElementException;
 
 /*
+TODO: HW4
 Modify OurList to impelemnt a double linked list. Use this code, do not write your
 own.
  */
