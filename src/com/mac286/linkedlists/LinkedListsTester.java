@@ -6,7 +6,7 @@ public class LinkedListsTester {
     public static void main(String[] args) {
         //ArrayList<Integer> A = new ArrayList<>();
         OurList<Integer> A = new OurList<>();
-        OurDoubleLinkedList<Integer> A = new OurDoubleLinkedList<>();
+        //OurDoubleLinkedList<Integer> A = new OurDoubleLinkedList<>();
         A.add(-1);
         A.add(-3);
         A.add(-5);

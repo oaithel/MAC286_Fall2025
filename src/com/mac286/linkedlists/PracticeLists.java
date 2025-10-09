@@ -21,4 +21,29 @@ public class PracticeLists {
         }
         return S;
     }
+
+    public static void main(String[] args) {
+        OurStack<Integer> S = generateStack(20, 300);
+        System.out.println("S: " + S);
+        int countSmall = 0;
+        int countMid = 0;
+        OurList<Integer> L = new OurList<>();
+        while(!S.isEmpty()){
+            if(S.peek() < -100){
+                L.add(0, S.pop());
+                countSmall++;
+            }else if(S.peek() >= -100 && S.peek() <= 100){
+                L.add(countSmall, S.pop());
+                countMid++;
+            }else{
+                L.add(countSmall + countMid, S.pop());
+
+            }
+        }
+        while(!L.isEmpty()){
+            S.push(L.remove());
+        }
+        System.out.println("S: " + S);
+
+    }
 }
