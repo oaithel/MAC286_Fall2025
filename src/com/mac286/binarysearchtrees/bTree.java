@@ -70,20 +70,63 @@ public class bTree <K extends Comparable<K>, T>{
     public void insert(K k, T d){
 
         //create a new Node with k and d
+        Node<K, T> newNode = new Node<K, T>(k, d);
         //if the tree is empty then set root to the newNode,
         //set size to 1 and return
+        if(this.isEmpty()){
+            root = newNode;
+            size = 1;
+            return;
+        }
 
         //start temp at root
+        Node<K, T> temp = root;
         //forever do the following:
+        while(true) {
             //if k is smaller than key of temp
+            if(k.compareTo(temp.key) < 0) {
                 //if there is a left, then go to left (temp = temp.getLeft())
-                //else link the node to the left of temp, increase the
-                //size and return.
-            //else (if k is larger than key of temp)
+                if(temp.getLeft() != null){
+                    temp = temp.getLeft();
+                    continue; //go back to the while
+                }else {
+                    //else link the node to the left of temp, increase the
+                    //size and return.
+                    temp.setLeft(newNode);
+                    size++;
+                    return;
+                }
+            }else {
+                //else (if k is larger than key of temp)
                 //if there is a right, go to the right
-                //else, link the node to the right of temp
-                //increment size and return.
+                if(temp.getRight() != null){
+                    temp = temp.getRight();
+                    continue;
+                }else {
+                    //else, link the node to the right of temp
+                    //increment size and return.
+                    temp.setRight(newNode);
+                    size++;
+                    return;
+                }
+            }
+        }
 
     }
 
+    public void preOrdertraversal(){
+        System.out.println("PreOrder: ");
+        preOrder(root);
+        System.out.println();
+    }
+    private void preOrder(Node<K, T> n){
+        if(n == null)
+            return;
+        //visit n
+        System.out.print(n.toString());
+        //explore the left
+        preOrder(n.getLeft());
+        //explore the right
+        preOrder(n.getRight());
+    }
 }
