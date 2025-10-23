@@ -132,22 +132,25 @@ public class bTree <K extends Comparable<K>, T>{
 
     //TODO: find reference to node with key k, null if it does not exist
     private Node<K, T> findNode(K k){
-
+return null;
     }
     //TODO: returns the refrence to parent of node with key k.
     private  Node<K, T> parentOf(K k){
-
+return null;
     }
     //TODO: find the smallest node on the right
     private Node<K, T> smallestOnRight(K k){
         //go once right, then keep going left until the left is null, you have your node
+    return null;
     }
     //TODO:
     private Node<K, T> largestOnLeft(K k){
         //go once left, then keep going right until the right is null, you have your node
+   return null;
     }
 
     public T delete(K k){
         //later
+        return null;
     }
 }
