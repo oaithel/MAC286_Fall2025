@@ -43,5 +43,34 @@ public class MidtermReview {
         mainStack = HW3Solution.generateStack(20, 200);
         System.out.println("Before S: " + mainStack);
         OurList<Integer> L = new OurList<>();
+        countN = 0;
+        countP = 0;
+        while(!mainStack.isEmpty()){
+            if(mainStack.peek() < 0){
+                countN++;
+                L.add(mainStack.pop());
+            }else{
+                countP++;
+                L.addFirst(mainStack.pop());
+            }
+        }
+        for(int i = 0; i < Math.min(countN, countP); i++){
+            if(countP > countN){
+                mainStack.push(L.removeFirst());
+                mainStack.push(L.removeLast());
+            }else{
+                mainStack.push(L.removeLast());
+                mainStack.push(L.removeFirst());
+            }
+        }
+        //empty the list into the stack
+        while(!L.isEmpty()){
+            if(L.get(0) < 0){
+                mainStack.push(L.removeLast());
+            }else{
+                mainStack.push(L.removeFirst());
+            }
+        }
+        System.out.println("After S: " + mainStack);
     }
 }
