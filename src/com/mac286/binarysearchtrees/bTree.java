@@ -132,25 +132,158 @@ public class bTree <K extends Comparable<K>, T>{
 
     //TODO: find reference to node with key k, null if it does not exist
     private Node<K, T> findNode(K k){
-return null;
+
+        Node<K, T> temp = root;
+        while(true){
+            if(temp == null){
+                return null;
+            }
+            if(temp.getKey().compareTo(k) == 0){
+                return temp;
+            }
+            if(k.compareTo(temp.getKey()) < 0){
+                //go left
+                temp = temp.getLeft();
+            }else{
+                temp = temp.getRight();
+            }
+        }
+
     }
     //TODO: returns the refrence to parent of node with key k.
     private  Node<K, T> parentOf(K k){
-return null;
+        if(root.getKey().compareTo(k) == 0){
+            return null;
+        }
+        Node<K, T> temp = root;
+        while(true){
+            if(temp == null){
+                return null;
+            }
+            if((temp.getLeft() != null && temp.getLeft().getKey().compareTo(k) == 0)
+                    || (temp.getRight()!= null && temp.getRight().getKey().compareTo(k) == 0)){
+                return temp;
+            }
+            if(k.compareTo(temp.getKey()) < 0){
+                //go left
+                temp = temp.getLeft();
+            }else{
+                temp = temp.getRight();
+            }
+        }
     }
     //TODO: find the smallest node on the right
-    private Node<K, T> smallestOnRight(K k){
+    private Node<K, T> smallestOnRight(Node<K, T> n){
         //go once right, then keep going left until the left is null, you have your node
-    return null;
+        Node<K, T> temp = n;
+        if (temp.getRight() == null){
+            return null;
+        }
+        //go once right
+        temp = temp.getRight();
+        while(temp.getLeft() != null){
+            temp = temp.getLeft();
+        }
+        return temp;
     }
     //TODO:
-    private Node<K, T> largestOnLeft(K k){
+    private Node<K, T> largestOnLeft(Node<K, T> n){
         //go once left, then keep going right until the right is null, you have your node
-   return null;
+        Node<K, T> temp = n;
+        if (temp.getLeft() == null){
+            return null;
+        }
+        //go once left
+        temp = temp.getLeft();
+        while(temp.getRight() != null){
+            temp = temp.getRight();
+        }
+        return temp;
     }
 
     public T delete(K k){
-        //later
-        return null;
+        //finad node to delete
+        Node<K, T> nodeToDelete = findNode(k);
+        if(nodeToDelete == null){
+            System.out.println("Node does not exist");
+            return null;
+        }
+        //save the data to be returned
+        T save = nodeToDelete.getmData();
+        //delete the node.
+        if(nodeToDelete.getRight() == null && nodeToDelete.getLeft() == null){
+            //this is a leaf.
+            //find the parent of nodeToDelete, prune the link.
+            if(nodeToDelete == root){
+                root = null;
+                size = 0;
+                return save;
+
+            }else{
+                //find the parent
+                Node<K, T> parentDelete = parentOf(nodeToDelete.getKey());
+                if(parentDelete.getLeft()!= null && parentDelete.getLeft().getKey().compareTo(nodeToDelete.getKey()) == 0){
+                    //the node is connected through the left
+                    parentDelete.setLeft(null);
+                    size--;
+                    return save;
+                }else{
+                    parentDelete.setRight(null);
+                    size--;
+                    return save;
+                }
+            }
+        }
+        //The node is not a leaft, it has a left or a right
+        if(nodeToDelete.getRight() != null){
+            //repalce with smallest on the right
+            Node<K, T> replacement = smallestOnRight(nodeToDelete);
+            Node<K, T> parentReplacement = parentOf(replacement.getKey());
+            if(parentReplacement.getLeft().getKey().compareTo(replacement.getKey()) == 0){
+                //replacment is connected to the oparent through the left
+                parentReplacement.setLeft(replacement.getRight());
+            }else{
+                //replacement is connected through the right
+                parentReplacement.setRight(replacement.getRight());
+            }
+            //copy replacment to nodeTodelete
+            nodeToDelete.setKey(replacement.key);
+            nodeToDelete.setmData(replacement.mData);
+            size--;
+            return save;
+        }else{
+            //replace with largest on the left
+            Node<K, T> replacement = largestOnLeft(nodeToDelete);
+            Node<K, T> parentReplacement = parentOf(replacement.getKey());
+            if(parentReplacement.getLeft().getKey().compareTo(replacement.getKey()) == 0){
+                //replacment is connected to the parent through the left
+                parentReplacement.setLeft(replacement.getLeft());
+            }else{
+                //replacement is connected through the right
+                parentReplacement.setRight(replacement.getLeft());
+            }
+            //copy replacment to nodeTodelete
+            nodeToDelete.setKey(replacement.key);
+            nodeToDelete.setmData(replacement.mData);
+            size--;
+            return save;
+        }
     }
+    public K smallestKey(){
+        Node<K, T> temp = root;
+        //keep going left, if there is left
+        while(temp.getLeft() != null){
+            temp = temp.getLeft();
+        }
+        return temp.getKey();
+    }
+    public K largestKey(){
+        Node<K, T> temp = root;
+        //keep going right, if there is right
+        while(temp.getRight() != null){
+            temp = temp.getRight();
+        }
+        return temp.getKey();
+    }
+
 }

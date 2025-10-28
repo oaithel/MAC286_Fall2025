@@ -16,9 +16,14 @@ public class bTreeTester {
         T.insert(18, "Hinb m");
         T.insert(4, "Hifgbw");
         T.insert(36, "Hsdri");
+        T.insert(14, "sdfsf");
         T.preOrdertraversal();
-
-
+        System.out.println("removing 10: " + T.delete(10));
+        T.preOrdertraversal();
+        System.out.println("removing 18: " + T.delete(18));
+        T.preOrdertraversal();
+        System.out.println("removing 25: " + T.delete(25));
+        T.preOrdertraversal();
 
     }
 }
