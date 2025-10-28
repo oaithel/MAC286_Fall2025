@@ -239,7 +239,7 @@ public class bTree <K extends Comparable<K>, T>{
             //repalce with smallest on the right
             Node<K, T> replacement = smallestOnRight(nodeToDelete);
             Node<K, T> parentReplacement = parentOf(replacement.getKey());
-            if(parentReplacement.getLeft().getKey().compareTo(replacement.getKey()) == 0){
+            if(parentReplacement.getLeft() != null && parentReplacement.getLeft().getKey().compareTo(replacement.getKey()) == 0){
                 //replacment is connected to the oparent through the left
                 parentReplacement.setLeft(replacement.getRight());
             }else{
@@ -255,7 +255,7 @@ public class bTree <K extends Comparable<K>, T>{
             //replace with largest on the left
             Node<K, T> replacement = largestOnLeft(nodeToDelete);
             Node<K, T> parentReplacement = parentOf(replacement.getKey());
-            if(parentReplacement.getLeft().getKey().compareTo(replacement.getKey()) == 0){
+            if(parentReplacement.getLeft() != null &&parentReplacement.getLeft().getKey().compareTo(replacement.getKey()) == 0){
                 //replacment is connected to the parent through the left
                 parentReplacement.setLeft(replacement.getLeft());
             }else{
