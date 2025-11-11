@@ -23,7 +23,7 @@ public class PriorityQeueueTester {
         System.out.println("Removing: " + Q.remove());
         System.out.println("Q: " + Q);
 
-        //Practice: Generate a random aray of 10 integers.
+        //TODO: HW8 Practice: Generate a random aray of 10 integers.
         //Use a heap to sort the array from the largest to the smallest value.
     }
 }
