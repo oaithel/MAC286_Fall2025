@@ -1,6 +1,7 @@
 package com.mac286.heaps;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public class OurHeap <T extends Comparable<T>>{
     //We need an array of Ts which are Comparables. Create an array of Comparables
@@ -52,30 +53,48 @@ public class OurHeap <T extends Comparable<T>>{
     }
 //TODO: HW7
     public T remove(){
+        if(this.isEmpty()){
+            throw new NoSuchElementException("Empty Heap");
+        }
         //save the top, index 0
-
+        T save = H[0];
         //replace the top 0 by the last (index size-1)
-
+        H[0] = H[size-1];
         //decrement size.
-
+        size--;
         //reheapify(0)
-
+        reheapify(0);
         //retrun save
-        return null;
+        return save;
     }
 //TODO: HW7
     private void reheapify(int i){
         //if i has no children, return.
+        if(2*i+1 >= size){
+            return;
+        }
         //left child = 2*i + 1, right cxhild = 2*i + 2
-        //if no left child, then no children.
 
         //find the smallest of the children, call it smallest
-
+        //assume the left is the smallest
+        int indexSmallest = 2*i + 1;
+        //if there is a right may be the right is smaller
+        if(2*i+2 < size){
+            if(H[2*i + 2].compareTo(H[2*i+1]) < 0){
+                indexSmallest = 2*i + 2;
+            }
+        }
         //compare i to smallest, if i is smaller, then return
-
+        if(H[i].compareTo(H[indexSmallest]) <= 0){
+            //The parent is smaller than the smallest of the children, return
+            return;
+        }
         //swap i with smallest
-
+        T save = H[i];
+        H[i] = H[indexSmallest];
+        H[indexSmallest] = save;
         //reheapify at smallest
+        reheapify(indexSmallest);
     }
     //Another way of dealing with the comma problem
     public String toString(){
