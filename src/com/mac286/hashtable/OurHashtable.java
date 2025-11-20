@@ -99,8 +99,18 @@ public class OurHashtable <K extends Comparable, T>{
         size++;
     }
 
+    public T get(K k){
+        int index = hashFunction(k);
+        while(H[index] != null){
+            if(H[index].getKey().compareTo(k) == 0) {
+                return H[index].getValue();
+            }
+            index = (index+1)%H.length;
+        }
+        return null;
+    }
     public T remove(K k){
-return null;
+        return null;
     }
 
     public String toString(){

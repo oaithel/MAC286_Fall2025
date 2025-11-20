@@ -15,12 +15,13 @@ public class HashTableTester {
         M.put(23, "Hola");
         M.put(4, "How");
         System.out.println("M: " + M);
-       /* System.out.println("The value of 15 is: " + M.get(15));
-        System.out.println("The value of 19 is: " + M.get(19));
+        System.out.println("The value of 15 is: " + M.get(13));
+        System.out.println("The value of 19 is: " + M.get(2));
         //if you add an existing key, the value at that key will
         //be replaced by the new one, no duplicate keys are allowed
         M.put(12, "Bye Bye");
         System.out.println("M: " + M);
+        /*
         //removing key 16
         System.out.println("removing key 16: " + M.remove(16));
         System.out.println("M: " + M);
