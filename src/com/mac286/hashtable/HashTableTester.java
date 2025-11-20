@@ -1,5 +1,6 @@
 package com.mac286.hashtable;
 
+import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -21,14 +22,20 @@ public class HashTableTester {
         //be replaced by the new one, no duplicate keys are allowed
         M.put(13, "Bye Bye");
         System.out.println("M: " + M);
-        /*
         //removing key 16
-        System.out.println("removing key 16: " + M.remove(16));
+        System.out.println("removing key 16: " + M.remove(13));
         System.out.println("M: " + M);
         System.out.println("removing key 19: " + M.remove(19));
+        M.put(20, "sdfwsd");
+        M.put(21, "asdfsdf");
+        M.put(31, "sdfasf");
+        System.out.println("M: " + M);
+        System.out.println("removing 20: " + M.remove(20));
+        System.out.println("M: " + M);
         //To go through all elements of a hashMap, you need the set of all
         //keys. You can get the set using .keySet. Remember a set is a collection
         //of different items.
+        /*
         Set<Integer> keys = M.keySet();
         //go through the set key by key and get the values and work with them
         for(Integer k : keys){

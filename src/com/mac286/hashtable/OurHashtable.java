@@ -85,6 +85,21 @@ public class OurHashtable <K extends Comparable, T>{
     public boolean isEmpty(){
         return (size == 0);
     }
+
+    //TODO: HW9
+    /*
+    Implement double hashing
+     */
+    public int doubleHashFunction(K k, int j){
+        //fid Q, find d(k), compute index
+        return 0;
+    }
+    /*
+    TODO: Implement the put using double hashing call it hPut
+     */
+    public void hPut(K k, T t){
+
+    }
     public int hashFunction(K k){
         return Math.abs(k.hashCode())%H.length;
     }
@@ -114,7 +129,45 @@ public class OurHashtable <K extends Comparable, T>{
         }
         return null;
     }
+    private void shift(int i){
+        int s = 1;
+        while(H[(i+s)%H.length] != null){
+            int j = hashFunction(H[(i+s)%H.length].getKey());
+            //does j belong to the interval ]i, i+s]
+            if((i+s)%H.length > i){
+                if(!(j > i && j <= (i+s)%H.length)){
+                    //j does not belong to the interval
+                    H[i] = H[(i+s)%H.length];
+                    H[(i+s)%H.length] = null;
+                    i = (i+s)%H.length;
+                    s = 1;
+                }else{
+                    s++;
+                }
+            }else{
+                if(!(j > i || j <= (i+s)%H.length)){
+                    //j does not belong to interval (circular interval)
+                    H[i] = H[(i+s)%H.length];
+                    H[(i+s)%H.length] = null;
+                    i = (i+s)%H.length;
+                    s = 1;
+                }else{
+                    s++;
+                }
+            }
+        }
+    }
     public T remove(K k){
+        int index = hashFunction(k);
+        while(H[index] != null){
+            if(H[index].getKey().compareTo(k) == 0){
+                T temp = H[index].getValue();
+                H[index] = null;
+                shift(index);
+                size--;
+                return temp;
+            }
+        }
         return null;
     }
 
