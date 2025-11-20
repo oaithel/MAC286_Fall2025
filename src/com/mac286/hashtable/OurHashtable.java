@@ -91,6 +91,11 @@ public class OurHashtable <K extends Comparable, T>{
     public void put(K k, T val){
         int index = hashFunction(k);
         while(H[index] != null){
+            if(H[index].getKey().compareTo(k) == 0){
+                //replace the value at the key and get out
+                H[index].setValue(val);
+                return;
+            }
             index = (index+1)%H.length;
         }
         //make a node

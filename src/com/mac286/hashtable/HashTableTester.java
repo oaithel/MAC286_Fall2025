@@ -19,7 +19,7 @@ public class HashTableTester {
         System.out.println("The value of 19 is: " + M.get(2));
         //if you add an existing key, the value at that key will
         //be replaced by the new one, no duplicate keys are allowed
-        M.put(12, "Bye Bye");
+        M.put(13, "Bye Bye");
         System.out.println("M: " + M);
         /*
         //removing key 16
