@@ -100,7 +100,7 @@ public class OurHashtable <K extends Comparable, T>{
     }
 
     public T remove(K k){
-
+return null;
     }
 
     public String toString(){
