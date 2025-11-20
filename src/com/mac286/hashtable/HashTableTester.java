@@ -7,14 +7,15 @@ import java.util.Set;
 public class HashTableTester {
     public static void main(String[] args) {
         //Map in Java is an interface, HashMap and Hashtable are implementing classes
-        Map<Integer, String> M = new HashMap<>();
-        M.put(10, "Hi");
-        M.put(12, "Bye");
-        M.put(15, "Hello");
-        M.put(16, "Hola");
-        M.put(18, "How");
+        //Map<Integer, String> M = new HashMap<>();
+        OurHashtable<Integer, String> M = new OurHashtable<>();
+        M.put(13, "Hi");
+        M.put(17, "Bye");
+        M.put(2, "Hello");
+        M.put(23, "Hola");
+        M.put(4, "How");
         System.out.println("M: " + M);
-        System.out.println("The value of 15 is: " + M.get(15));
+       /* System.out.println("The value of 15 is: " + M.get(15));
         System.out.println("The value of 19 is: " + M.get(19));
         //if you add an existing key, the value at that key will
         //be replaced by the new one, no duplicate keys are allowed
@@ -33,5 +34,6 @@ public class HashTableTester {
             String val = M.get(k);
             System.out.println(k + " = " + val);
         }
+        */
     }
 }
