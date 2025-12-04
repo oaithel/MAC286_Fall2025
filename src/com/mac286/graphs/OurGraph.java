@@ -99,6 +99,39 @@ public class OurGraph <T>{
         }
         return sequence;
     }
+    //Minimum Spanning Tree using Depth First Search Algorithm
+    public String MinumumTreeDFS(T src){
+        //create a string to return
+        String sequence = "";
+        //create a set for visited nodes
+        Set<T> visited = new HashSet<>();
+        Stack<T> S = new Stack<>();
+        //push src into stack
+        S.push(src);
+        visited.add(src);
+        while(!S.isEmpty()){
+            T n = S.peek();
+            //find an unvisited neighbor
+            boolean allNeighborsVisited = true;
+                List<T> adjList = adjacencyList.get(n);
+                //go thru all neibors and push anyone not visited
+                for(T temp:adjList){
+                    if(!visited.contains(temp)){
+                        S.push(temp);
+                        visited.add(temp);
+                        allNeighborsVisited = false;
+                        //add the edge (n, temp) to the tree
+                        sequence += "(" + n +", " + temp+")" + "\t";
+                        break;
+                    }
+                }
+                if(allNeighborsVisited){
+                    S.pop();
+                }
+
+            }
+        return sequence;
+    }
 
     public String BFS(T src){
         //create a set for visited
