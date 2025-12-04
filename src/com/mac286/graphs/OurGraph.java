@@ -100,7 +100,7 @@ public class OurGraph <T>{
         return sequence;
     }
     //Minimum Spanning Tree using Depth First Search Algorithm
-    public String MinumumTreeDFS(T src){
+    public String MinimumSpanningTreeDFS(T src){
         //create a string to return
         String sequence = "";
         //create a set for visited nodes
@@ -150,6 +150,29 @@ public class OurGraph <T>{
                 if(!visited.contains(temp)){
                     visited.add(temp);
                     sequence += temp.toString() + "\t";
+                    Q.add(temp);
+                }
+            }
+        }
+        return sequence;
+    }
+    public String MinimumSpanningTreeBFS(T src){
+        //create a set for visited
+        Set<T> visited = new HashSet<>();
+        //create a queue
+        Queue<T> Q = new LinkedList<>();
+        //visit src and add it to queue
+        visited.add(src);
+        String sequence = "";
+        Q.add(src);
+        while(!Q.isEmpty()){
+            T n = Q.remove();
+            //go thru all neighbors, anyone not visited, visit it and add it to the queue
+            List<T> adjList = adjacencyList.get(n);
+            for(T temp : adjList){
+                if(!visited.contains(temp)){
+                    visited.add(temp);
+                    sequence += "(" + n +", " + temp + ")\t";
                     Q.add(temp);
                 }
             }

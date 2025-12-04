@@ -14,7 +14,8 @@ public class GraphTester {
         System.out.println(graph);
         System.out.println("DFS: " + graph.DFS("C"));
         System.out.println("BFS: " + graph.BFS("C"));
-        System.out.println("MinimumSpanningTreeDFS: " + graph.MinumumTreeDFS("A"));
+        System.out.println("MinimumSpanningTreeDFS: " + graph.MinimumSpanningTreeDFS("A"));
+        System.out.println("MinimumSpanningTreeBFS: " + graph.MinimumSpanningTreeBFS("A"));
 
 
     }
