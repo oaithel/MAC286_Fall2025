@@ -1,9 +1,6 @@
 package com.mac286.graphs;
 
-import java.util.Hashtable;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class OurGraph <T>{
     private Hashtable<T, List<T>> adjacencyList;
@@ -74,6 +71,58 @@ public class OurGraph <T>{
     //src from adjacency list of dst.
     public void deleteEdge(T src, T dst){}
 
+    //Depth First Search Algorithm
+    public String DFS(T src){
+        //create a string to return
+        String sequence = "";
+        //create a set for visited nodes
+        Set<T> visited = new HashSet<>();
+        Stack<T> S = new Stack<>();
+        //push src into stack
+        S.push(src);
+        while(!S.isEmpty()){
+            T n = S.pop();
+            //if the node not visited
+            if(!visited.contains(n)){
+                visited.add(n);
+                sequence += n +"\t";
+                List<T> adjList = adjacencyList.get(n);
+                //go thru all neibors and push anyone not visited
+                for(T temp:adjList){
+                    if(!visited.contains(temp)){
+                        S.push(temp);
+                    }
+                }
+
+            }
+
+        }
+        return sequence;
+    }
+
+    public String BFS(T src){
+        //create a set for visited
+        Set<T> visited = new HashSet<>();
+        //create a queue
+        Queue<T> Q = new LinkedList<>();
+        //visit src and add it to queue
+        visited.add(src);
+        String sequence = src.toString() + "\t";
+        Q.add(src);
+        while(!Q.isEmpty()){
+            T n = Q.remove();
+            //go thru all neighbors, anyone not visited, visit it and add it to the queue
+            List<T> adjList = adjacencyList.get(n);
+            for(T temp : adjList){
+                if(!visited.contains(temp)){
+                    visited.add(temp);
+                    sequence += temp.toString() + "\t";
+                    Q.add(temp);
+                }
+            }
+        }
+        return sequence;
+    }
     public String toString(){
         if(adjacencyList == null || adjacencyList.isEmpty()){
             return "[]";
